@@ -1,0 +1,8 @@
+---
+    name: install config
+    hosts: nagios
+    
+    tasks:
+    -name: install wget
+        yum: install wget
+    
