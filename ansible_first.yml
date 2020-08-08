@@ -3,6 +3,9 @@
     hosts: nagios
     
     tasks:
-    -name: install wget
-        yum: install wget
+        -name: install httpd
+         yum:
+           name: httpd
+           state: latest
+        
     
