@@ -6,6 +6,3 @@
       yum:
         name: ['gcc', 'glibc', 'glibc-common', 'gd', 'gd-devel', 'make', 'net-snmp', 'openssl-devel']
         state: absent
-        register: result
-
-    - debug: msg="{{ result.stdout }}"
