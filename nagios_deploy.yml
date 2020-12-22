@@ -1,17 +1,17 @@
 ---
-   name: install Config for nagios
+ - name: install Config for nagios
    hosts: all
    tasks:
-        - name: install basic Packs
-          yum:
-            name: '{{ item }}'
-            state: present
-          with_items:
-            - gcc
-            - glibc
-            - glibc-common
-            - gd
-            - gd-devel
-            - make
-            - net-snmp
-            - openssl-devel
+    - name: install basic Packs
+      yum:
+        name: '{{ item }}'
+        state: present
+      with_items:
+        - gcc
+        - glibc
+        - glibc-common
+        - gd
+        - gd-devel
+        - make
+        - net-snmp
+        - openssl-devel
