@@ -6,3 +6,9 @@
       yum:
         name: ['gcc', 'glibc', 'glibc-common', 'gd', 'gd-devel', 'make', 'net-snmp', 'openssl-devel']
         state: present
+      register: output
+
+
+    - debug:
+       msg:
+          - "Final Output is {{output}}"
