@@ -2,6 +2,8 @@
  - name: install Config for nagios
    hosts: all
    become: yes
+   vars:
+     password: nagios  
    tasks:
     - name: install basic Packs
       yum:
@@ -17,5 +19,5 @@
     - name: Create Nagios user
       user:
         name: nagios
-        password: nagios
+        password: "{{password | password_hash('sha512')}}"
         state: present       
