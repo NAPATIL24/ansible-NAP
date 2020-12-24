@@ -32,7 +32,7 @@
 
     - name: Copy the Nagios Plugin file
       copy:
-        src: /tmp/nagios-plugins-2.1.2.tar.gz
+        src: nagios-plugins-2.1.2.tar.gz
         dest: /tmp/
         remote_src: no
         mode: u=rwx,g=rwx,o=rwx
