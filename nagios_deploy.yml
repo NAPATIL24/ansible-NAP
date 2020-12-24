@@ -21,3 +21,44 @@
         name: nagios
         password: "{{password | password_hash('sha512')}}"
         state: present       
+      register: out_user_create
+
+
+
+    - debug:
+       msg:
+          - "Nagios user creation on server {{out_user_create}}"
+
+
+    - name: Copy the Nagios Plugin file
+      copy:
+        src: /nkansible/ansible-NAP/nagios-plugins-2.1.2.tar.gz
+        dest: /tmp/nagios-plugins-2.1.2.tar.gz
+        owner: patilnik
+        mode: u=rwx,g=rwx,o=rwx
+      register: out_copy_plugin
+
+    - debug:
+       msg:
+          - "Plugin Copy result {{out_copy_plugin}}"
+
+    - name: Untar the Plugin file
+      shell: tar -xvf nagios-plugins-2.1.2.tar.gz
+      args:
+        chdir: /tmp/
+      register: out_untar
+
+    - debug:
+       msg:
+          - "Untar results {{out_untar}}"
+
+    - name: "run config on Plugin"
+      shell: ./configure
+      args:
+        chdir: /tmp/nagios-plugins-2.1.2/
+      register: out_config_result
+
+    -debug:
+      msg:
+         - "Config Result {{out_config_result}}"
+   
