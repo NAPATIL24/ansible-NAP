@@ -32,9 +32,9 @@
 
     - name: Copy the Nagios Plugin file
       copy:
-        src: /nkansible/ansible-NAP/nagios-plugins-2.1.2.tar.gz
+        src: /tmp/nagios-plugins-2.1.2.tar.gz
         dest: /tmp/nagios-plugins-2.1.2.tar.gz
-        owner: patilnik
+        remote_src: true
         mode: u=rwx,g=rwx,o=rwx
       register: out_copy_plugin
 
