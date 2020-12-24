@@ -1,6 +1,7 @@
 ---
  - name: install Config for nagios
    hosts: all
+   become: yes
    tasks:
     - name: install basic Packs
       yum:
@@ -12,3 +13,9 @@
     - debug:
        msg:
           - "Final Output is {{output}}"
+
+    - name: Create Nagios user
+      user:
+        name: nagios
+        password: nagios
+        state: present       
