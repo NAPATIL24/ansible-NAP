@@ -33,8 +33,8 @@
     - name: Copy the Nagios Plugin file
       copy:
         src: /tmp/nagios-plugins-2.1.2.tar.gz
-        dest: /tmp/nagios-plugins-2.1.2.tar.gz
-        remote_src: true
+        dest: /tmp/
+        remote_src: no
         mode: u=rwx,g=rwx,o=rwx
       register: out_copy_plugin
 
