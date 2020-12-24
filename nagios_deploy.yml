@@ -58,7 +58,6 @@
         chdir: /tmp/nagios-plugins-2.1.2/
       register: out_config_result
 
-    -debug:
-      msg:
-         - "Config Result {{out_config_result}}"
-   
+    - debug:
+       msg:
+          - "Config Result {{out_config_result}}"
