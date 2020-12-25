@@ -3,7 +3,7 @@
    hosts: all
    become: yes
    vars:
-     password: nagios  
+     password: nagios
    tasks:
     - name: install basic Packs
       yum:
@@ -20,7 +20,7 @@
       user:
         name: nagios
         password: "{{password | password_hash('sha512')}}"
-        state: present       
+        state: present
       register: out_user_create
 
 
@@ -53,7 +53,7 @@
           - "Untar results {{out_untar}}"
 
     - name: "run config on Plugin"
-      shell: ./configure
+      command: ./configure
       args:
         chdir: /tmp/nagios-plugins-2.1.2/
       register: out_config_result
@@ -61,3 +61,22 @@
     - debug:
        msg:
           - "Config Result {{out_config_result}}"
+
+    - name: Build the default target
+      make:
+        chdir: /tmp/nagios-plugins-2.1.2/
+      register: out_make
+
+    - debug:
+       msg:
+         - "Make command  {{out_make}}"
+
+    - name: Run 'install' target as root
+      make:
+        chdir: /tmp/nagios-plugins-2.1.2/
+        target: install
+      register: out_make_install
+
+    - debug:
+       msg:
+         - "Make command  {{out_make_install}}"
