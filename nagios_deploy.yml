@@ -53,9 +53,7 @@
           - "Untar results {{out_untar}}"
 
     - name: "run config on Plugin"
-      command: ./configure
-      args:
-        chdir: /tmp/nagios-plugins-2.1.2/
+      command: chdir=/tmp/nagios-plugins-2.1.2/ ./configure
       register: out_config_result
 
     - debug:
